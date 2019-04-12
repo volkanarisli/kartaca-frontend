@@ -37,7 +37,7 @@
           .then((res) => {
             this.response = res;
             console.log(this.response.data.status)
-            this.response.data.status === 404 ? this.isResponseTaken = false : this.isResponseTaken = true
+            this.response.data.status === 404 ? this.response = false : this.isResponseTaken = true
           })
           .catch(() => {
             console.log("Something Wrong!")
