@@ -10,6 +10,7 @@
         <b-navbar-nav>
           <b-nav-item href="/ltom">Latin Alphabet to Morse Code</b-nav-item>
           <b-nav-item href="/mtol">Morse Code to Latin Alphabet</b-nav-item>
+          <b-nav-item href="/chat">CHAT</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -18,10 +19,12 @@
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template slot="button-content">
-              <em>Login / Sign Up</em>
+              <em v-if="NAME === ''">Login / Sign Up</em>
+              <em v-if="NAME !== ''"> Log Out</em>
             </template>
-            <b-dropdown-item href="/login">Login</b-dropdown-item>
-            <b-dropdown-item href="/register">Sign Up</b-dropdown-item>
+            <b-dropdown-item v-if="NAME !== ''" href="/" v-on:click="logOut">Log Out</b-dropdown-item>
+            <b-dropdown-item v-if="NAME === ''" href="/login">Login</b-dropdown-item>
+            <b-dropdown-item v-if="NAME === ''" href="/register">Sign Up</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -30,9 +33,18 @@
 </template>
 
 <script>
-export default {
+  import {mapState, mapMutations } from 'vuex';
 
-};
+  export default {
+    data() {
+      return {}
+    },
+    computed:
+      mapState(['NAME']),
+    ...mapMutations({
+      logOut: 'SET_NAME_EMPTY'
+    })
+  };
 </script>
 
 <style>

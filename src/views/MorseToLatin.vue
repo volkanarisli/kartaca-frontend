@@ -1,16 +1,22 @@
 <template>
-  <div>
-    <b-form-textarea
-      id="textarea"
-      v-model="text"
-      placeholder="Enter something..."
-      rows="10"
-      max-rows="6"
-    ></b-form-textarea>
+  <div class="outer_div">
+    <div class="text_area">
+      <b-form-textarea
+        id="textarea"
+        v-model="text"
+        placeholder="Enter something..."
+        rows="10"
+        max-rows="6"
+      ></b-form-textarea>
+    </div>
 
-    <b-button class="voki" variant="dark" v-on:click="Convert">Convert</b-button>
-
-    <pre class="mt-3 mb-0" v-if="isResponseTaken">{{ response.data }}</pre>
+    <div class="button_div">
+      <b-button class="button button_first" variant="dark" v-on:click="Convert">Convert</b-button>
+      <b-button class="button" variant="dark" v-on:click="Reset">Reset</b-button>
+    </div>
+    <div class="result_div">
+      <textarea class="text_area2" rows="8" v-if="isResponseTaken"  v-model="response.data"></textarea>
+    </div>
   </div>
 </template>
 
@@ -22,26 +28,62 @@
       return {
         text: "",
         response: null,
-        isResponseTaken: false
+        isResponseTaken: false,
       };
     },
     methods: {
       Convert() {
-        axios.post("http://localhost:3000/morse-to-latin", { text: this.text })
+        axios.post("http://localhost:3000/morse-to-latin", {text: this.text})
           .then((res) => {
             this.response = res;
-            this.isResponseTaken = true;
+            this.response.data.status === 404 ? this.isResponseTaken = false : this.isResponseTaken = true
           })
           .catch(() => {
             console.log("Something Wrong!")
           });
+      },
+      Reset() {
+        this.text = ''
+        this.response = ''
+        this.isResponseTaken = false
       }
-    }
+    },
   };
 </script>
 
 <style>
-  .voki {
-
+  .text_area {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
   }
+
+  #textarea {
+    width: 1000px;
+  }
+
+  .button_div {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .button {
+    width: 300px;
+  }
+
+  .result_div {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .text_area2 {
+    width: 1000px;
+  }
+
+  .button_first {
+    margin-right: 20px;
+  }
+
 </style>
