@@ -1,77 +1,32 @@
 <template>
-  <div>
-    <b-carousel
-      id="carousel-1"
-      v-model="slide"
-      :interval="4000"
-      controls
-      indicators
-      background="#ababab"
-      img-width="1024"
-      img-height="480"
-      style="text-shadow: 1px 1px 2px #333;"
-      @sliding-start="onSlideStart"
-      @sliding-end="onSlideEnd"
-    >
-      <!-- Text slides with image -->
-      <b-carousel-slide
-        caption="First slide"
-        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-        img-src="https://picsum.photos/1024/480/?image=52"
-      ></b-carousel-slide>
+  <div class="container">
+    <b-jumbotron class=" jumbo" text-variant="white">
+      <template slot="header" >Kartaca Internship project morse alphabet converter</template>
 
-      <!-- Slides with custom text -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
-        <h1>Hello world!</h1>
-      </b-carousel-slide>
 
-      <!-- Slides with image only -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide>
+      <p>Background image is the morse code like patterns found on mars</p>
 
-      <!-- Slides with img slot -->
-      <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-      <b-carousel-slide>
-        <img
-          slot="img"
-          class="d-block img-fluid w-100"
-          width="1024"
-          height="480"
-          src="https://picsum.photos/1024/480/?image=55"
-          alt="image slot"
-        >
-      </b-carousel-slide>
 
-      <!-- Slide with blank fluid image to maintain slide aspect ratio -->
-      <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros felis, tincidunt
-          a tincidunt eget, convallis vel est. Ut pellentesque ut lacus vel interdum.
-        </p>
-      </b-carousel-slide>
-    </b-carousel>
+      <hr class="my-4" >
 
-    <!--<p class="mt-4">-->
-      <!--Slide #: {{ slide }}<br>-->
-      <!--Sliding: {{ sliding }}-->
-    <!--</p>-->
+
+      <b-button class="btnLeft" variant="primary" href="/ltom">Latin To Morse Converter</b-button>
+      <b-button variant="success" href="/mtol">Morse To Latin Converter</b-button>
+    </b-jumbotron>
   </div>
 </template>
+<style>
+.jumbo{
+  background-image: url("https://imagesvc.timeincapp.com/v3/mm/image?url=https%3A%2F%2Ftimedotcom.files.wordpress.com%2F2016%2F07%2Fmars-morse-code-wide.jpg&w=800&c=sc&poi=face&q=85");
+  background-position: center;
+  background-size: cover;
+}
+.btnLeft{
+  margin-right: 15px;
+}
+
+</style>
 
 <script>
-  export default {
-    data() {
-      return {
-        slide: 0,
-        sliding: null
-      }
-    },
-    methods: {
-      onSlideStart(slide) {
-        this.sliding = true
-      },
-      onSlideEnd(slide) {
-        this.sliding = false
-      }
-    }
-  }
+
 </script>
