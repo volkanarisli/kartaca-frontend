@@ -2,7 +2,7 @@
   <div>
 
     <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="/">Converter</b-navbar-brand>
+      <b-navbar-brand v-on:click="goToHomePage">Converter</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -44,6 +44,9 @@
     methods:{
       logOut(){
         this.$store.dispatch("SET_NAME_EMPTY");
+      },
+      goToHomePage() {
+        this.$router.push({path: '/'})
       }
     }
   };

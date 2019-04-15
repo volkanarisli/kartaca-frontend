@@ -24,14 +24,20 @@
     },
     methods : {
       async sendMessage(){
-        if(this.handle || this.message){
-          let message = {
-            handle : this.handle,
-            message : this.message,
-            author : this.author
+        if (this.$store.getters.NAME !== '') {
+          if (this.handle || this.message) {
+            let message = {
+              handle: this.handle,
+              author: this.author,
+              message: this.message
+            }
+            let response = await this.$socket.emit('chat', message);
+            this.message = "";
           }
-          let response = await this.$socket.emit('chat',message);
-          this.message = "";
+        } else {
+          alert('Please, Log In!')
+          setTimeout(3000)
+          this.$router.push({path: '/login'})
         }
       },
     }

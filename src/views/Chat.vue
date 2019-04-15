@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
+  import {mapGetters, mapActions} from 'vuex'
   import chatItem from '../components/ChatItem'
   import chatHandle from '../components/Handle'
   import chatBox from '../components/ChatBox'
@@ -35,7 +35,8 @@
       appChatBox : chatBox,
     },
     computed:{
-      ...mapGetters(['CHATS','HANDLE'])
+      ...mapGetters(['CHATS','HANDLE']),
+      ...mapActions(['SET_CHAT'])
     },
     beforeMount(){
       // alert("Please, LOG IN!");
@@ -55,14 +56,7 @@
         console.log('socket connected');
       },
       chat : function(val){
-        if(this.$store.getters.NAME === ''){
-          alert('Please, Log In!')
-          setTimeout(3000)
-          this.$router.push({path: '/login'})
-
-        }else{
-          this.$store.dispatch(("ADD_CHAT",val));
-        }
+        this.$store.dispatch("ADD_CHAT", val);
       }
     }
   }

@@ -10,8 +10,8 @@
       <hr class="my-4" >
 
 
-      <b-button class="btnLeft" variant="primary" href="/ltom">Latin To Morse Converter</b-button>
-      <b-button variant="success" href="/mtol">Morse To Latin Converter</b-button>
+      <b-button class="btnLeft" variant="primary" v-on:click="goToLatin">Latin To Morse Converter</b-button>
+      <b-button variant="success" v-on:click="goToMorse">Morse To Latin Converter</b-button>
     </b-jumbotron>
   </div>
 </template>
@@ -28,5 +28,14 @@
 </style>
 
 <script>
-
+  export default {
+    methods: {
+      goToMorse() {
+        this.$router.push({path: '/mtol'})
+      },
+      goToLatin() {
+        this.$router.push({path: '/ltom'})
+      }
+    }
+  }
 </script>
