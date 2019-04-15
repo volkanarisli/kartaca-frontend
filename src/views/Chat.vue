@@ -55,7 +55,14 @@
         console.log('socket connected');
       },
       chat : function(val){
-        this.$store.dispatch("ADD_CHAT",val);
+        if(this.$store.getters.NAME === ''){
+          alert('Please, Log In!')
+          setTimeout(3000)
+          this.$router.push({path: '/login'})
+
+        }else{
+          this.$store.dispatch(("ADD_CHAT",val));
+        }
       }
     }
   }

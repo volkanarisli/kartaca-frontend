@@ -3,7 +3,7 @@
        <span slot="activator">
          <p class="grey--text text--darken-2">
            <b class="indigo--text" v-if="isMyHandle(chat.handle)">{{chat.handle}} :</b>
-           <b class="pink--text" v-else>Me :</b>
+           <b class="pink--text" v-else>{{ chat.author }}</b>
            {{chat.message}}
          </p>
        </span>

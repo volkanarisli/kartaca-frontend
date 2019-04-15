@@ -8,9 +8,9 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="/ltom">Latin Alphabet to Morse Code</b-nav-item>
-          <b-nav-item href="/mtol">Morse Code to Latin Alphabet</b-nav-item>
-          <b-nav-item href="/chat">CHAT</b-nav-item>
+          <b-nav-item ><router-link tag="li" to="/ltom">Latin Alphabet to Morse Code</router-link></b-nav-item>
+          <b-nav-item ><router-link tag="li" to="/mtol">Morse Code to Latin Alphabet</router-link></b-nav-item>
+          <b-nav-item ><router-link tag="li" to="/chat">CHAT </router-link></b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -41,9 +41,11 @@
     },
     computed:
       mapState(['NAME']),
-    ...mapMutations({
-      logOut: 'SET_NAME_EMPTY'
-    })
+    methods:{
+      logOut(){
+        this.$store.dispatch("SET_NAME_EMPTY");
+      }
+    }
   };
 </script>
 

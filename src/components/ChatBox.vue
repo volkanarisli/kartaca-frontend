@@ -18,7 +18,8 @@
   export default {
     data () {
       return {
-        message : ""
+        message : "",
+        author : this.$store.getters.NAME
       }
     },
     methods : {
@@ -26,7 +27,8 @@
         if(this.handle || this.message){
           let message = {
             handle : this.handle,
-            message : this.message
+            message : this.message,
+            author : this.author
           }
           let response = await this.$socket.emit('chat',message);
           this.message = "";
